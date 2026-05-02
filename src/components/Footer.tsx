@@ -90,7 +90,7 @@ const Footer = () => {
             <div className="space-y-3 text-sm text-white/60">
               <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone size={14} className="flex-shrink-0" />
-                +91 7972666151
+                +91 99999 99999
               </a>
               <a href="mailto:hello@dreambakers.in" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Mail size={14} className="flex-shrink-0" />
