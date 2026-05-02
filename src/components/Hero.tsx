@@ -44,7 +44,7 @@ const Hero = () => (
           </motion.p>
           <motion.div className="flex flex-wrap gap-4 justify-center lg:justify-start"
             initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.7 }}>
-            <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/917972666151" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 gradient-primary text-primary-foreground px-8 py-4 rounded-full text-base font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
               <MessageCircle size={18} />
               Order Now
