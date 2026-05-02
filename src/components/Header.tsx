@@ -3,7 +3,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Menu, X } from "lucide-react";
 import logoImg from "@/assets/dream-bakers-logo.png";
 
-const navLinks = ["Home", "Menu", "About", "Branches", "Custom Cake", "Gallery"];
+const WHATSAPP_NUMBER = "917972666151";
+
+// ✅ Explicit ID map — no more fragile string replace
+const navLinks = [
+  { label: "Home",        id: "home" },
+  { label: "Menu",        id: "menu" },
+  { label: "About",       id: "about" },
+  { label: "Branches",    id: "branches" },
+  { label: "Custom Cake", id: "custom-cake" },
+  { label: "Gallery",     id: "gallery" },
+];
+
+const scrollToSection = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 80; // header height
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+};
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -14,7 +33,6 @@ const Header = () => {
   useEffect(() => {
     const handler = () => {
       const currentY = window.scrollY;
-      // Hide when scrolling DOWN past 100px, show when scrolling UP
       if (currentY > 100) {
         setHidden(currentY > lastY);
       } else {
@@ -27,9 +45,8 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handler);
   }, [lastY]);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id.toLowerCase().replace(" ", "-"));
-    el?.scrollIntoView({ behavior: "smooth" });
+  const handleNav = (id: string) => {
+    scrollToSection(id);
     setMobileOpen(false);
   };
 
@@ -43,7 +60,7 @@ const Header = () => {
       <div className="px-4 md:px-8 flex items-center justify-between h-16 md:h-20">
 
         {/* Logo */}
-        <button onClick={() => scrollTo("home")} className="flex items-center gap-2 flex-shrink-0">
+        <button onClick={() => scrollToSection("home")} className="flex items-center gap-2 flex-shrink-0">
           <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
             <img src={logoImg} alt="Dream Bakers" className="w-11 h-11 object-contain" />
           </div>
@@ -53,18 +70,18 @@ const Header = () => {
         {/* Nav */}
         <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => (
-            <button key={link} onClick={() => scrollTo(link)}
+            <button key={link.id} onClick={() => handleNav(link.id)}
               className="relative text-sm font-medium text-white/80 hover:text-white transition-colors duration-200 px-3 py-2 group">
               <span className="absolute bottom-1 left-3 right-3 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                 style={{ background: "linear-gradient(90deg, hsl(356,85%,65%), hsl(262,40%,65%))" }} />
-              {link}
+              {link.label}
             </button>
           ))}
         </nav>
 
         {/* WhatsApp CTA */}
         <div className="flex items-center gap-3">
-          <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"
+          <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-2 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border border-white/20"
             style={{ background: "linear-gradient(135deg, hsl(356,85%,57%), hsl(262,40%,39%))" }}
             onMouseEnter={e => {
@@ -84,6 +101,7 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -95,12 +113,12 @@ const Header = () => {
           >
             <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
-                <button key={link} onClick={() => scrollTo(link)}
+                <button key={link.id} onClick={() => handleNav(link.id)}
                   className="text-left text-sm font-medium text-white/70 hover:text-white py-2.5 px-3 rounded-lg hover:bg-white/10 transition-all">
-                  {link}
+                  {link.label}
                 </button>
               ))}
-              <a href="https://wa.me/917972666151" target="_blank" rel="noopener noreferrer"
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 text-white px-5 py-3 rounded-full text-sm font-semibold mt-2"
                 style={{ background: "linear-gradient(135deg, hsl(356,85%,57%), hsl(262,40%,39%))" }}>
                 <MessageCircle size={16} /> Order on WhatsApp
