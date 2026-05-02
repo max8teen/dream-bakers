@@ -1,5 +1,8 @@
-import { MessageCircle, Instagram, Facebook, Phone, Mail } from "lucide-react";
+import { MessageCircle, Instagram, Facebook, Phone, Mail, MapPin } from "lucide-react";
 import logoImg from "@/assets/dream-bakers-logo.png";
+
+// ✅ Replace with real WhatsApp number
+const WHATSAPP_NUMBER = "919999999999";
 
 const Footer = () => {
   return (
@@ -14,10 +17,9 @@ const Footer = () => {
       <div className="container">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
-          {/* Brand with circular logo */}
+          {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              {/* Circle logo */}
               <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-lg overflow-hidden">
                 <img src={logoImg} alt="Dream Bakers" className="w-12 h-12 object-contain" />
               </div>
@@ -30,13 +32,17 @@ const Footer = () => {
               Parbhani's favourite bakery, making celebrations sweeter since 2015.
             </p>
             <div className="flex gap-3 mt-4">
-              <a href="#" className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center hover:bg-white/30 transition-colors">
+              {/* ✅ Replace # with real Instagram/Facebook URLs */}
+              <a href="https://www.instagram.com/dreambakersparbhani" target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center hover:bg-pink-500 transition-colors">
                 <Instagram size={16} />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center hover:bg-white/30 transition-colors">
+              <a href="https://www.facebook.com/dreambakersparbhani" target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center hover:bg-blue-500 transition-colors">
                 <Facebook size={16} />
               </a>
-              <a href="https://wa.me/919999999999" className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center hover:bg-green-500 transition-colors">
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center hover:bg-green-500 transition-colors">
                 <MessageCircle size={16} />
               </a>
             </div>
@@ -48,7 +54,12 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-white/60">
               {["Home", "Menu", "About", "Branches", "Custom Cake", "Gallery"].map((l) => (
                 <li key={l}>
-                  <a href={`#${l.toLowerCase().replace(" ", "-")}`} className="hover:text-white transition-colors">{l}</a>
+                  <a
+                    href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="hover:text-white transition-colors"
+                  >
+                    {l}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -58,29 +69,38 @@ const Footer = () => {
           <div>
             <h4 className="font-heading text-lg mb-4">Visit Us</h4>
             <ul className="space-y-3 text-sm text-white/60">
-              <li>📍 Station Road, Near Railway Station</li>
-              <li>📍 Jintur Road, Opp. SBI Bank</li>
-              <li>📍 Vasmat Naka, Parbhani</li>
+              <li className="flex items-start gap-2">
+                <MapPin size={14} className="flex-shrink-0 mt-0.5 text-white/40" />
+                Station Road, Near Railway Station
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin size={14} className="flex-shrink-0 mt-0.5 text-white/40" />
+                Jintur Road, Opp. SBI Bank
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin size={14} className="flex-shrink-0 mt-0.5 text-white/40" />
+                Vasmat Naka, Parbhani
+              </li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact — ✅ Removed broken newsletter input, replaced with clean contact block */}
           <div>
-            <h4 className="font-heading text-lg mb-4">Stay Connected</h4>
-            <div className="space-y-3 text-sm text-white/60 mb-4">
-              <a href="tel:+919999999999" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Phone size={14} /> +91 99999 99999
+            <h4 className="font-heading text-lg mb-4">Contact Us</h4>
+            <div className="space-y-3 text-sm text-white/60">
+              <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-white transition-colors">
+                <Phone size={14} className="flex-shrink-0" />
+                +91 99999 99999
               </a>
               <a href="mailto:hello@dreambakers.in" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Mail size={14} /> hello@dreambakers.in
+                <Mail size={14} className="flex-shrink-0" />
+                hello@dreambakers.in
               </a>
-            </div>
-            <div className="flex gap-2">
-              <input type="email" placeholder="Your email"
-                className="flex-1 rounded-full bg-white/10 px-4 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/40 border border-white/20" />
-              <button className="gradient-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
-                Join
-              </button>
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 mt-4 px-5 py-2.5 rounded-full bg-green-500 text-white text-xs font-semibold hover:bg-green-400 transition-colors w-fit">
+                <MessageCircle size={14} />
+                Order on WhatsApp
+              </a>
             </div>
           </div>
         </div>
