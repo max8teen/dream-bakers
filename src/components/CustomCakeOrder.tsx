@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 
 // ✅ Replace with real WhatsApp number
-const WHATSAPP_NUMBER = "919999999999";
+const WHATSAPP_NUMBER = "917972666151";
 
 const cakeSizes = ["0.5 kg", "1 kg", "1.5 kg", "2 kg", "3 kg", "5 kg"];
 const flavors = ["Chocolate", "Vanilla", "Red Velvet", "Butterscotch", "Mango", "Strawberry", "Pineapple", "Black Forest"];
