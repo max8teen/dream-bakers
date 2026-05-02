@@ -2,7 +2,7 @@ import { MessageCircle, Instagram, Facebook, Phone, Mail, MapPin } from "lucide-
 import logoImg from "@/assets/dream-bakers-logo.png";
 
 // ✅ Replace with real WhatsApp number
-const WHATSAPP_NUMBER = "919999999999";
+const WHATSAPP_NUMBER = "917972666151";
 
 const Footer = () => {
   return (
