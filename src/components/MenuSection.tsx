@@ -81,7 +81,7 @@ const PinCard = ({
 
           {/* WhatsApp order button — appears on hover */}
           <motion.a
-            href={`https://wa.me/919999999999?text=${encodeURIComponent(`Hi! I'd like to order ${item.name} (${item.price})`)}`}
+            href={`https://wa.me/917972666151?text=${encodeURIComponent(`Hi! I'd like to order ${item.name} (${item.price})`)}`}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, scale: 0.7 }}
