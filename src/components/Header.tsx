@@ -100,7 +100,7 @@ const Header = () => {
                   {link}
                 </button>
               ))}
-              <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/917972666151" target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 text-white px-5 py-3 rounded-full text-sm font-semibold mt-2"
                 style={{ background: "linear-gradient(135deg, hsl(356,85%,57%), hsl(262,40%,39%))" }}>
                 <MessageCircle size={16} /> Order on WhatsApp
