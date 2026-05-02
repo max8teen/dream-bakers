@@ -1,19 +1,33 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
+// ✅ Fixed: proper imports instead of /src/assets/ paths which break in production
+import cakeChocolate from "@/assets/cake-chocolate.png";
+import cakeRedvelvet from "@/assets/cake-redvelvet.png";
+import cupcakeFloat from "@/assets/cupcake-float.png";
+import cakeMango from "@/assets/cake-mango.png";
+import cookiesAssorted from "@/assets/cookies-assorted.png";
+import cakeButterscotch from "@/assets/cake-butterscotch.png";
+import pastries from "@/assets/pastries.png";
+import heroCake from "@/assets/hero-cake.png";
+import bakeryInterior from "@/assets/bakery-interior.jpg";
+import branch1 from "@/assets/branch-1.jpg";
+import branch2 from "@/assets/branch-2.jpg";
+import branch3 from "@/assets/branch-3.jpg";
+
 const galleryItems = [
-  { id: 1, src: "/src/assets/cake-chocolate.png", name: "Dark Chocolate Dream" },
-  { id: 2, src: "/src/assets/cake-redvelvet.png", name: "Red Velvet Romance" },
-  { id: 3, src: "/src/assets/cupcake-float.png", name: "Cupcake Float" },
-  { id: 4, src: "/src/assets/cake-mango.png", name: "Mango Bliss Cake" },
-  { id: 5, src: "/src/assets/cookies-assorted.png", name: "Assorted Cookies" },
-  { id: 6, src: "/src/assets/cake-butterscotch.png", name: "Butterscotch Layer" },
-  { id: 7, src: "/src/assets/pastries.png", name: "Fresh Pastries" },
-  { id: 8, src: "/src/assets/hero-cake.png", name: "Signature Celebration" },
-  { id: 9, src: "/src/assets/bakery-interior.jpg", name: "Our Bakery" },
-  { id: 10, src: "/src/assets/branch-1.jpg", name: "Station Road Branch" },
-  { id: 11, src: "/src/assets/branch-2.jpg", name: "Jintur Road Branch" },
-  { id: 12, src: "/src/assets/branch-3.jpg", name: "Vasmat Naka Branch" },
+  { id: 1, src: cakeChocolate, name: "Dark Chocolate Dream" },
+  { id: 2, src: cakeRedvelvet, name: "Red Velvet Romance" },
+  { id: 3, src: cupcakeFloat, name: "Cupcake Float" },
+  { id: 4, src: cakeMango, name: "Mango Bliss Cake" },
+  { id: 5, src: cookiesAssorted, name: "Assorted Cookies" },
+  { id: 6, src: cakeButterscotch, name: "Butterscotch Layer" },
+  { id: 7, src: pastries, name: "Fresh Pastries" },
+  { id: 8, src: heroCake, name: "Signature Celebration" },
+  { id: 9, src: bakeryInterior, name: "Our Bakery" },
+  { id: 10, src: branch1, name: "Station Road Branch" },
+  { id: 11, src: branch2, name: "Jintur Road Branch" },
+  { id: 12, src: branch3, name: "Vasmat Naka Branch" },
 ];
 
 const row1 = [...galleryItems.slice(0, 6), ...galleryItems.slice(0, 6), ...galleryItems.slice(0, 6)];
@@ -107,7 +121,6 @@ const ScrollRow = ({ items, direction }: { items: typeof row1; direction: "left"
     return () => cancelAnimationFrame(autoRef.current);
   }, [startAuto]);
 
-  // Mouse drag
   const onMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
     startX.current = e.clientX;
@@ -121,7 +134,6 @@ const ScrollRow = ({ items, direction }: { items: typeof row1; direction: "left"
   };
   const onMouseUp = () => { isDragging.current = false; };
 
-  // Touch drag
   const onTouchStart = (e: React.TouchEvent) => {
     isDragging.current = true;
     startX.current = e.touches[0].clientX;
