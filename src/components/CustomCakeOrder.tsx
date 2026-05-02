@@ -2,8 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Cake, Heart, MessageSquare, CalendarDays, Send, Star,
-  Upload, User, Phone, ChevronRight, CheckCircle2,
+  User, Phone, ChevronRight, CheckCircle2, Info,
 } from "lucide-react";
+
+// ✅ Replace with real WhatsApp number
+const WHATSAPP_NUMBER = "919999999999";
 
 const cakeSizes = ["0.5 kg", "1 kg", "1.5 kg", "2 kg", "3 kg", "5 kg"];
 const flavors = ["Chocolate", "Vanilla", "Red Velvet", "Butterscotch", "Mango", "Strawberry", "Pineapple", "Black Forest"];
@@ -24,7 +27,7 @@ const CustomCakeOrder = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Hi! I'd like to order a custom cake:\n👤 Name: ${form.name}\n📞 Phone: ${form.phone}\n🎂 Size: ${form.size}\n🍰 Flavor: ${form.flavor}\n💬 Message: ${form.message}\n📅 Date: ${form.date}`;
-    window.open(`https://wa.me/919999999999?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   const inputClass =
@@ -145,16 +148,15 @@ const CustomCakeOrder = () => {
                 onChange={(e) => setForm({ ...form, date: e.target.value })}
                 className={inputClass} required />
             </div>
-            <div className="mb-6">
-              <label className="flex items-center gap-1.5 text-sm font-semibold text-foreground mb-2">
-                <Upload size={14} className="text-muted-foreground" />
-                Reference Image (Optional)
-              </label>
-              <div className="w-full rounded-xl border-2 border-dashed border-border bg-soft-grey p-6 text-center cursor-pointer hover:border-primary/40 transition-colors">
-                <Upload size={24} className="mx-auto text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground">Click to upload or drag and drop</p>
-              </div>
+
+            {/* ✅ Replaced fake upload with helpful note */}
+            <div className="mb-6 flex items-start gap-3 bg-primary/5 border border-primary/15 rounded-xl px-4 py-3">
+              <Info size={16} className="text-primary flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-muted-foreground">
+                Have a reference image? Send it directly on WhatsApp after placing your order and we'll match your design.
+              </p>
             </div>
+
             <button type="submit" disabled={!canSubmit}
               className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold gradient-primary text-primary-foreground disabled:opacity-40 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
               <Send size={16} />
@@ -294,6 +296,14 @@ const CustomCakeOrder = () => {
                   required />
               </div>
 
+              {/* ✅ Replaced fake upload with helpful note */}
+              <div className="flex items-start gap-3 bg-primary/5 border border-primary/15 rounded-xl px-4 py-3">
+                <Info size={14} className="text-primary flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-muted-foreground">
+                  Have a reference image? Send it on WhatsApp after placing your order.
+                </p>
+              </div>
+
               <button
                 type="submit"
                 disabled={!canSubmit}
@@ -311,3 +321,4 @@ const CustomCakeOrder = () => {
 };
 
 export default CustomCakeOrder;
+
